@@ -4,20 +4,32 @@ import (
 	"log"
 	"net/http"
 	"shape-api/internal/common/config"
+	"shape-api/internal/repo"
 	"strconv"
 
 	"github.com/gin-gonic/autotls"
 	"github.com/gin-gonic/gin"
 )
 
-func NewServer() *server {
+func NewServer(cfg *Config) *server {
 	return &server{
-		r: gin.Default(),
+		r:        gin.Default(),
+		userRepo: cfg.UserRepo,
 	}
+}
+
+type Config struct {
+	UserRepo repo.User
 }
 
 type server struct {
 	r *gin.Engine
+
+	userRepo repo.User
+}
+
+func (s *server) GetRouter() *gin.Engine {
+	return s.r
 }
 
 func (s *server) Run() {

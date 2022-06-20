@@ -2,6 +2,7 @@ package main
 
 import (
 	"shape-api/internal/adapter/http/rest"
+	"shape-api/internal/adapter/repoimpl/mysqlrepo"
 	"shape-api/internal/common/config"
 
 	"github.com/joho/godotenv"
@@ -12,6 +13,14 @@ func main() {
 	godotenv.Load(".default.env")
 	config.Load()
 
-	s := rest.NewServer()
+	db, err := mysqlrepo.Connect(config.MySQL().DSN)
+	if err != nil {
+		panic(err)
+	}
+
+	s := rest.NewServer(&rest.Config{
+		UserRepo: mysqlrepo.NewUserRepo(db),
+	})
+
 	s.Run()
 }

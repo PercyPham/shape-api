@@ -12,6 +12,7 @@ import (
 // Call this function as close as possible to the start of your program (ideally in main)
 func Load() {
 	loadAppConfig()
+	loadMySQLConfig()
 
 	hasConfigLoaded = true
 }
