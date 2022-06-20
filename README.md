@@ -28,13 +28,37 @@ To overwrite those env variables, create a new file `.env` and overwrite the des
 
 ### Development
 
-To start in Dev mode:
+To setup dev environment:
+
+```
+make dev_up
+```
+- Note: This will run docker-compose and spin up mysql db with an `phpMyAdmin` as DB GUI at `localhost:8081`.
+
+To stop db and db gui:
+```
+make dev_down
+```
+- Note: This will stop the db and db gui containers. However, it does not wipe out all data, and can be turned on again with "`make dev_up`" command.
+
+To wipe out all database of dev mode, run:
+```
+make dev_db_clean
+```
+- Note: must run "`make dev_down`" first.
+
+To run code in Dev mode:
 
 ```
 make dev
 ```
 
 ### Production
+
+<details>
+<summary>Setup DB</summary>
+Must have a DB created with the name `shape`, the sql script is located at `./init/db/schemas.sql`.
+</details>
 
 To build the executable file:
 
