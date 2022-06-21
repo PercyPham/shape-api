@@ -28,4 +28,11 @@ func (s *server) setupAPIs() {
 	apiV1.GET("/squares/:id/perimeter", v1.GetSquarePerimeterByID(s.squareRepo))
 	apiV1.PUT("/squares/:id", v1.UpdateSquare(s.squareRepo))
 	apiV1.DELETE("/squares/:id", v1.DeleteSquareByID(s.squareRepo))
+
+	apiV1.POST("/diamonds", v1.CreateDiamond(s.diamondRepo))
+	apiV1.GET("/diamonds/:id", v1.GetDiamondByID(s.diamondRepo))
+	apiV1.GET("/diamonds/:id/area", v1.GetDiamondAreaByID(s.diamondRepo))
+	apiV1.GET("/diamonds/:id/perimeter", v1.GetDiamondPerimeterByID(s.diamondRepo))
+	apiV1.PUT("/diamonds/:id", v1.UpdateDiamond(s.diamondRepo))
+	apiV1.DELETE("/diamonds/:id", v1.DeleteDiamondByID(s.diamondRepo))
 }

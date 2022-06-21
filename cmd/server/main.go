@@ -22,6 +22,7 @@ func main() {
 		TriangleRepo:  mysqlrepo.NewTriangleRepo(db),
 		RectangleRepo: mysqlrepo.NewRectangleRepo(db),
 		SquareRepo:    mysqlrepo.NewSquareRepo(db),
+		DiamondRepo:   mysqlrepo.NewDiamondRepo(db),
 	})
 	if err != nil {
 		panic(err)
