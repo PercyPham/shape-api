@@ -53,6 +53,14 @@ To run code in Dev mode:
 make dev
 ```
 
+### Test
+
+To run test:
+
+```
+make test
+```
+
 ### Production
 
 <details>

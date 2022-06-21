@@ -1,4 +1,4 @@
-.PHONY: dev build build_clean dev_up dev_down dev_clean
+.PHONY: dev test build build_clean dev_up dev_down dev_clean
 
 # Color section
 # Ref: https://qastack.vn/programming/5947742/how-to-change-the-output-color-of-echo-in-linux
@@ -7,6 +7,9 @@ NC=\033[0m # No Color
 
 dev:
 	@go run cmd/server/main.go
+
+test:
+	@go test ./...
 
 build: build_clean
 	@go build -o build/main cmd/server/main.go
