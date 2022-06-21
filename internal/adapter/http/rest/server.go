@@ -21,6 +21,7 @@ func NewServer(cfg *Config) (*server, error) {
 		userRepo:      cfg.UserRepo,
 		triangleRepo:  cfg.TriangleRepo,
 		rectangleRepo: cfg.RectangleRepo,
+		squareRepo:    cfg.SquareRepo,
 	}, nil
 }
 
@@ -28,6 +29,7 @@ type Config struct {
 	UserRepo      repo.User
 	TriangleRepo  repo.Triangle
 	RectangleRepo repo.Rectangle
+	SquareRepo    repo.Square
 }
 
 func (c *Config) validate() error {
@@ -40,6 +42,9 @@ func (c *Config) validate() error {
 	if c.RectangleRepo == nil {
 		return fmt.Errorf("rectangle repo must not be nil")
 	}
+	if c.SquareRepo == nil {
+		return fmt.Errorf("square repo must not be nil")
+	}
 	return nil
 }
 
@@ -49,6 +54,7 @@ type server struct {
 	userRepo      repo.User
 	triangleRepo  repo.Triangle
 	rectangleRepo repo.Rectangle
+	squareRepo    repo.Square
 }
 
 func (s *server) GetRouter() *gin.Engine {
