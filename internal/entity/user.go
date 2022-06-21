@@ -12,7 +12,7 @@ var (
 )
 
 type User struct {
-	Username     string `json:"username"`
+	Username     string `json:"username" gorm:"primaryKey"`
 	Password     string `json:"password"`
 	PasswordSalt string `json:"password_salt"`
 }

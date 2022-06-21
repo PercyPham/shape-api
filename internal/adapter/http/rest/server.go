@@ -13,19 +13,22 @@ import (
 
 func NewServer(cfg *Config) *server {
 	return &server{
-		r:        gin.Default(),
-		userRepo: cfg.UserRepo,
+		r:            gin.Default(),
+		userRepo:     cfg.UserRepo,
+		triangleRepo: cfg.TriangleRepo,
 	}
 }
 
 type Config struct {
-	UserRepo repo.User
+	UserRepo     repo.User
+	TriangleRepo repo.Triangle
 }
 
 type server struct {
 	r *gin.Engine
 
-	userRepo repo.User
+	userRepo     repo.User
+	triangleRepo repo.Triangle
 }
 
 func (s *server) GetRouter() *gin.Engine {

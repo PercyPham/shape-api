@@ -18,7 +18,8 @@ func main() {
 	}
 
 	s := rest.NewServer(&rest.Config{
-		UserRepo: mysqlrepo.NewUserRepo(db),
+		UserRepo:     mysqlrepo.NewUserRepo(db),
+		TriangleRepo: mysqlrepo.NewTriangleRepo(db),
 	})
 
 	s.Run()
