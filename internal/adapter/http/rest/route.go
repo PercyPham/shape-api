@@ -10,6 +10,8 @@ func (s *server) setupAPIs() {
 
 	apiV1.POST("/triangles", v1.CreateTriangle(s.triangleRepo))
 	apiV1.GET("/triangles/:id", v1.GetTriangleByID(s.triangleRepo))
+	apiV1.GET("/triangles/:id/area", v1.GetTriangleAreaByID(s.triangleRepo))
+	apiV1.GET("/triangles/:id/perimeter", v1.GetTrianglePerimeterByID(s.triangleRepo))
 	apiV1.PUT("/triangles/:id", v1.UpdateTriangle(s.triangleRepo))
 	apiV1.DELETE("/triangles/:id", v1.DeleteTriangleByID(s.triangleRepo))
 }
