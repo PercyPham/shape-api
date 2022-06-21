@@ -17,6 +17,15 @@ type userRepo struct {
 	db *gorm.DB
 }
 
+func (ur *userRepo) GetUserByUsername(username string) *entity.User {
+	user := new(entity.User)
+	result := ur.db.Where("username = ?", username).First(user)
+	if result.Error != nil {
+		return nil
+	}
+	return user
+}
+
 func (r *userRepo) CreateUser(user *entity.User) error {
 	result := r.db.Create(user)
 	if result.Error != nil {

@@ -10,5 +10,6 @@ var (
 )
 
 type User interface {
+	GetUserByUsername(username string) *entity.User
 	CreateUser(*entity.User) error
 }

@@ -6,4 +6,5 @@ func (s *server) setupAPIs() {
 	apiV1 := s.r.Group("/api/v1")
 
 	apiV1.POST("/users/register", v1.Register(s.userRepo))
+	apiV1.POST("/users/login", v1.Login(s.userRepo))
 }
