@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"shape-api/internal/common/config"
@@ -11,24 +12,43 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NewServer(cfg *Config) *server {
-	return &server{
-		r:            gin.Default(),
-		userRepo:     cfg.UserRepo,
-		triangleRepo: cfg.TriangleRepo,
+func NewServer(cfg *Config) (*server, error) {
+	if err := cfg.validate(); err != nil {
+		return nil, err
 	}
+	return &server{
+		r:             gin.Default(),
+		userRepo:      cfg.UserRepo,
+		triangleRepo:  cfg.TriangleRepo,
+		rectangleRepo: cfg.RectangleRepo,
+	}, nil
 }
 
 type Config struct {
-	UserRepo     repo.User
-	TriangleRepo repo.Triangle
+	UserRepo      repo.User
+	TriangleRepo  repo.Triangle
+	RectangleRepo repo.Rectangle
+}
+
+func (c *Config) validate() error {
+	if c.UserRepo == nil {
+		return fmt.Errorf("user repo must not be nil")
+	}
+	if c.TriangleRepo == nil {
+		return fmt.Errorf("triangle repo must not be nil")
+	}
+	if c.RectangleRepo == nil {
+		return fmt.Errorf("rectangle repo must not be nil")
+	}
+	return nil
 }
 
 type server struct {
 	r *gin.Engine
 
-	userRepo     repo.User
-	triangleRepo repo.Triangle
+	userRepo      repo.User
+	triangleRepo  repo.Triangle
+	rectangleRepo repo.Rectangle
 }
 
 func (s *server) GetRouter() *gin.Engine {

@@ -17,10 +17,14 @@ func main() {
 		panic(err)
 	}
 
-	s := rest.NewServer(&rest.Config{
-		UserRepo:     mysqlrepo.NewUserRepo(db),
-		TriangleRepo: mysqlrepo.NewTriangleRepo(db),
+	server, err := rest.NewServer(&rest.Config{
+		UserRepo:      mysqlrepo.NewUserRepo(db),
+		TriangleRepo:  mysqlrepo.NewTriangleRepo(db),
+		RectangleRepo: mysqlrepo.NewRectangleRepo(db),
 	})
+	if err != nil {
+		panic(err)
+	}
 
-	s.Run()
+	server.Run()
 }

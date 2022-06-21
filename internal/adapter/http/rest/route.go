@@ -14,4 +14,11 @@ func (s *server) setupAPIs() {
 	apiV1.GET("/triangles/:id/perimeter", v1.GetTrianglePerimeterByID(s.triangleRepo))
 	apiV1.PUT("/triangles/:id", v1.UpdateTriangle(s.triangleRepo))
 	apiV1.DELETE("/triangles/:id", v1.DeleteTriangleByID(s.triangleRepo))
+
+	apiV1.POST("/rectangles", v1.CreateRectangle(s.rectangleRepo))
+	apiV1.GET("/rectangles/:id", v1.GetRectangleByID(s.rectangleRepo))
+	apiV1.GET("/rectangles/:id/area", v1.GetRectangleAreaByID(s.rectangleRepo))
+	apiV1.GET("/rectangles/:id/perimeter", v1.GetRectanglePerimeterByID(s.rectangleRepo))
+	apiV1.PUT("/rectangles/:id", v1.UpdateRectangle(s.rectangleRepo))
+	apiV1.DELETE("/rectangles/:id", v1.DeleteRectangleByID(s.rectangleRepo))
 }
