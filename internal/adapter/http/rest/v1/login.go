@@ -34,7 +34,7 @@ func Login(userRepo repo.User) func(*gin.Context) {
 			return
 		}
 
-		response.Success(c, http.StatusCreated, gin.H{
+		response.Success(c, http.StatusOK, gin.H{
 			"accessToken": accessToken,
 		})
 	}
