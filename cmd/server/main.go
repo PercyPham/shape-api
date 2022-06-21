@@ -9,8 +9,7 @@ import (
 )
 
 func main() {
-	godotenv.Load(".env") // load `.env` if has
-	godotenv.Load(".default.env")
+	godotenv.Load() // load `.env` if has
 	config.Load()
 
 	db, err := mysqlrepo.Connect(config.MySQL().DSN)

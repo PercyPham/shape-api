@@ -22,7 +22,7 @@ Create a RESTful API that will allow:
 
 ### Setup Env Variables
 
-The default environment variables are defined in `.default.env` file at the root of the project.
+The environment variables are illustrated in `.env.example` file at the root of the project.
 
 To overwrite those env variables, create a new file `.env` and overwrite the desired env variables.
 
@@ -75,4 +75,4 @@ To run the built file:
 
 Note:
 - The `.env` file must be created with an `APP_ENV` equals to `prod`.
-- `.default.env` and `.env` must be located at the current command execution path (e.g. located at root of repo when running above command).
+- `.env` must be located at the current command execution path (e.g. located at root of repo when running above command).

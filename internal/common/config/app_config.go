@@ -11,11 +11,15 @@ const (
 )
 
 func App() appConfig {
-	ensureConfigLoaded()
+	if !hasAppConfigLoaded {
+		loadAppConfig()
+		hasAppConfigLoaded = true
+	}
 	return app
 }
 
 var app appConfig
+var hasAppConfigLoaded = false
 
 type appConfig struct {
 	ENV     string
@@ -26,9 +30,10 @@ type appConfig struct {
 
 func loadAppConfig() {
 	app = appConfig{
-		ENV:     getENV("APP_ENV"),
-		Port:    getIntENV("APP_PORT"),
-		Domains: strings.Split(getENV("APP_DOMAINS"), ";"),
+		ENV:     getENV("APP_ENV", "dev"),
+		Port:    getIntENV("APP_PORT", 5000),
+		Domains: strings.Split(getENV("APP_DOMAINS", ""), ";"),
+		Secret:  getENV("APP_SECRET", "secret"),
 	}
 
 	if !(app.ENV == "dev" || app.ENV == "staging" || app.ENV == "prod") {

@@ -11,9 +11,7 @@ import (
 )
 
 func TestRegisterWithInvalidInput(t *testing.T) {
-	userRepoMock := repomock.
-		NewUserRepoMockBuilder().
-		Build()
+	userRepoMock := repomock.NewUserRepoMockBuilder().Build()
 
 	registerUC := usecase.NewRegisterUsecase(userRepoMock)
 	err := registerUC.Register(time.Now(), &usecase.RegisterInput{})
@@ -22,6 +20,7 @@ func TestRegisterWithInvalidInput(t *testing.T) {
 		t.Errorf("expected error '%v', got '%v'", entity.ErrEmptyUsername, err)
 	}
 }
+
 func TestRegisterWithDuplicateUsername(t *testing.T) {
 	userRepoMock := repomock.
 		NewUserRepoMockBuilder().

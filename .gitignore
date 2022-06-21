@@ -1,4 +1,4 @@
-# main env which will override .default.env
+# env
 .env
 
 # build
