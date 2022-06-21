@@ -18,7 +18,25 @@ Create a RESTful API that will allow:
   - Perimeter
 ```
 
+APIs' structures developed in this repository are described in [`api/postman`](./api/postman/).
+
+Note about project:
+
+- This project is structured as Clean Architecture.
+- Entities and usecases are tested with automation tests.
+- Since the time constraints, API tests are tested manually, not automatically.
+- CRUD operations for shapes contains:
+  - Create single shape
+  - Get single shape by id
+  - Update single shape
+  - Delete single shape
+
 ## Getting Started
+
+### Requirements
+
+- Docker & Docker Compose
+- Golang 1.17
 
 ### Setup Env Variables
 
@@ -34,6 +52,7 @@ To setup dev environment:
 make dev_up
 ```
 - Note: This will run docker-compose and spin up mysql db with an `phpMyAdmin` as DB GUI at `localhost:8081`.
+- Please be patient, it will take few minutes to get everything prepared.
 
 To stop db and db gui:
 ```
@@ -83,4 +102,5 @@ To run the built file:
 
 Note:
 - The `.env` file must be created with an `APP_ENV` equals to `prod`.
+- `APP_DOMAINS` must be defined, since this will run with SSL certificate provided by `Let's Encrypt`.
 - `.env` must be located at the current command execution path (e.g. located at root of repo when running above command).
